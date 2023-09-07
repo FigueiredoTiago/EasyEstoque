@@ -1,12 +1,11 @@
 .left-menu {
-  background-image: linear-gradient(to bottom, #0442BF, #022859);
-  color: #f2e7dc;;
+  background-image: linear-gradient(to bottom, #0442bf, #022859);
+  color: #f2e7dc;
   height: 100vh;
   width: 0;
   position: fixed;
   transition: width 0.5s ease-in-out;
   border-right: 4px ridge #f2e7dc;
-  
 
   .menu-icon {
     cursor: pointer;
@@ -30,18 +29,16 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     .username {
-        font-style: italic;
-
+      font-style: italic;
     }
 
-    button {
-        background-color: transparent;
-        border: none;
-        color: #f2e7dc;
-        font-style: italic;
+    p {
+      color: #f2e7dc;
+      font-style: italic;
+      font-weight: lighter;
     }
   }
 
@@ -50,20 +47,32 @@
     padding-left: 1rem;
 
     ul {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        color: #fff;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      color: #fff;
 
-        .logout {
-          border: 2px #f2e7dc;
-          border-style: outset;
-          width: 50%;
-          border-radius: 1rem;
-          padding: 0 .5rem;
+      li {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        a {
+          color:#f2e7dc;
+          text-decoration: none;
+
+          &:hover {
+            color: #000;
+          }
         }
+
+        img {
+          width: 100%;
+          max-width: 2rem;
+        }
+      }
     }
   }
 }

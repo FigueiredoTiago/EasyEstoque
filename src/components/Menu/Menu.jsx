@@ -1,5 +1,9 @@
 import "./styles.scss";
 import menu from "../../assets/icons/menu.png";
+import plus from '../../assets/icons/plus.png';
+import logout from '../../assets/icons/logout.png';
+import user from '../../assets/icons/user.png';
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const openMenu = () => {
@@ -15,16 +19,15 @@ const Menu = () => {
 
           <div className="user-info">
             <h3 className="username">Tiago.F</h3>
-            <button>SAIR</button>
+            <p>ADMIN</p>
           </div>
           <nav>
 
             <ul>
 
-              <li>► Novo Produto</li>
-              <li>► Fornecedores</li>
-              <li>► Usuarios </li>
-              <li className="logout">► Logout</li>
+              <li> <img src={plus} /> <Link>Novo Produto</Link>   </li>
+              <li> <img src={user} /> <Link>Fornecedores</Link> </li>
+              <li> <img src={logout} /><Link>Logout</Link> </li>
 
             </ul>
           </nav>
