@@ -18,11 +18,14 @@ const Menu = () => {
             <button>SAIR</button>
           </div>
           <nav>
+
             <ul>
-              <li>► Produtos</li>
-              <li>► Categorias</li>
+
+              <li>► Novo Produto</li>
               <li>► Fornecedores</li>
-              <li>► Usuários</li>
+              <li>► Usuarios </li>
+              <li className="logout">► Logout</li>
+
             </ul>
           </nav>
 

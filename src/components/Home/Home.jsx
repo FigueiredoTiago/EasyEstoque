@@ -1,16 +1,31 @@
 import "./styles.scss";
 import "../Menu/styles.scss";
-
+import search from "../../assets/icons/search.png";
+import box from "../../assets/icons/box.png";
+import plus from "../../assets/icons/plus.png";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <main className="main-home">
-
       <div className="info-home">
+        <h1 className="logo">
+          <img src={box} />
+          EasyEstoque
+        </h1>
 
-        <h1>EasyEstoque</h1>
+        
 
-        <input type="text" placeholder="Search Products Here..." />
+        <div className="input-box">
 
+          <img src={plus} />
+
+          <Link to="/">Novo Produto</Link>
+
+          <input type="text" placeholder="Search Products..." />
+
+          <img src={search} alt="icon search" />
+
+        </div>
       </div>
 
       <div className="table-container container">
@@ -147,7 +162,6 @@ const Home = () => {
           </tbody>
         </table>
       </div>
-
     </main>
   );
 };
