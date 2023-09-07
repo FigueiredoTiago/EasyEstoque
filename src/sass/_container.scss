@@ -1,0 +1,21 @@
+@import "./grid";
+
+//mixin container
+@mixin container {
+  max-width: $l-device;
+  margin: 0 auto;
+  position: relative;
+  @include device("m") {
+    max-width: $m-device;
+  }
+  @include device("s") {
+    max-width: $s-device;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include clearfix;
+}
+//
+.container {
+  @include container;
+}

@@ -1,0 +1,66 @@
+.left-menu {
+  background-image: linear-gradient(to bottom, #0442BF, #022859);
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  transition: width 0.5s ease-in-out;
+
+  .menu-icon {
+    width: 3rem;
+    position: absolute;
+    right: -2rem;
+    top: 40%;
+  }
+
+  .menu-content {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    background-color: #ffffff2a;
+    backdrop-filter: blur(10rem);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
+
+    .username {
+        font-style: italic;
+
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-style: italic;
+    }
+  }
+
+  nav {
+    height: 70vh;
+
+    ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        color: #fff;
+    }
+  }
+}
+
+.left-menu.active {
+  width: 250px;
+
+  .menu-content {
+    opacity: 1;
+  }
+}
+
+.left-menu.active + .main-home {
+  margin-left: 250px;
+}
