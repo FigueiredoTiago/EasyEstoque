@@ -1,23 +1,20 @@
-@import '../../sass/grid';
+@import "../../sass/grid";
 
 .main-home {
   height: 100vh;
   transition: margin-left 0.5s ease-in-out;
+
+  padding: 0 1rem;
 
   img {
     cursor: pointer;
   }
 
   .info-home {
-    padding: 0 3rem;
     height: 15vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    @include device('s') {
-      padding: 0 1rem;
-    }
 
     nav {
       background-color: #0442bf;
@@ -43,7 +40,7 @@
       color: #f2e7dc;
       text-shadow: 0 0 1rem rgba(0, 0, 0, 0.499);
 
-      @include device('s') {
+      @include device("s") {
         font-size: 2rem;
       }
 
@@ -51,7 +48,7 @@
         width: 100%;
         max-width: 7rem;
 
-        @include device('s') {
+        @include device("s") {
           max-width: 5rem;
         }
       }
@@ -62,7 +59,7 @@
       align-items: center;
       gap: 0.5rem;
 
-      @include device('s') {
+      @include device("s") {
         justify-content: end;
       }
 
@@ -76,7 +73,7 @@
         background-color: #f2e7dc;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.38);
 
-        @include device('s') {
+        @include device("s") {
           width: 50%;
         }
 
@@ -91,7 +88,7 @@
         max-width: 3rem;
       }
 
-      @include device('s') {
+      @include device("s") {
         .plus {
           display: none;
         }
@@ -106,7 +103,7 @@
           color: #000;
         }
 
-        @include device('s') {
+        @include device("s") {
           display: none;
         }
       }
@@ -117,58 +114,48 @@
 .table-container {
   width: 100%;
   height: 80vh;
-  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  border-radius: 1rem 0 0 1rem;
+  background-color: #0442bf;
   overflow: auto;
-}
 
-table {
-  width: 100%;
-  height: 100%;
-  border-collapse: collapse;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 
-  @include device('s') {
-    width: 100vw;
+  &::-webkit-scrollbar-track {
+    background: #f2e7dc;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #0442bf;
   }
 }
 
-table,
-th,
-td {
-  background-color: #f2e7dc;
-  color: #000000;
-}
-
-th,
-td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px ridge #0442bf;
-}
-
-th {
-  position: sticky;
-  top: 0;
-  color: #ffffff;
+thead {
   background-image: linear-gradient(to bottom, #0442bf, #022859);
-  border-bottom: 1px solid #0442bf;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.38);
+  position: sticky;
+  top: -1px;
+}
+
+table {
+  background-color: #f2e7dc;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: center;
 }
 
 td {
+  border-bottom: 2px ridge #f2e7dc;
   img {
     width: 100%;
     max-width: 2rem;
   }
-}
-
-::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-::-webkit-scrollbar-track {
-  background: #f2e7dc;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0442bf;
 }
