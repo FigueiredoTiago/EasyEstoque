@@ -8,8 +8,7 @@ import editar from '../../assets/icons/editar.png';
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <main className="main-home">
-
+    <main className="main-home"> 
       <div className="container">
         <div className="info-home">
           <h1 className="logo">

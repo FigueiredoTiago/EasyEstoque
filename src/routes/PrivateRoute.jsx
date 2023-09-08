@@ -2,7 +2,7 @@
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({children}) => {
-  const token = false;
+  const token = true;
 
   if(token === false) return <Navigate to="/" />;
   return  children;
