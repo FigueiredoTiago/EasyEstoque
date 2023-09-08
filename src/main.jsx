@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -9,6 +10,7 @@ import "./sass/Global.scss";
 import App from "./App";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +19,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Login />,
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "/home",
+        element: <PrivateRoute> <Home /> </PrivateRoute>,
       },
     ],
   },
