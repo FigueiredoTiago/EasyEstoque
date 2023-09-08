@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 import box from '../../assets/icons/box.png';
+import Error from "../../utils/Error";
 
 const Login = () => {
   // eslint-disable-next-line no-unused-vars
@@ -49,14 +50,14 @@ const Login = () => {
               placeholder="Email"
             />
 
-            {errors.email && <span>email is required</span>}
+            {errors.email && <Error error="email is required" />}
             
             <input type="password"
               {...register("password", { required: true })}
               placeholder="Password"
             />
             
-            {errors.password && <span>password is required</span>}
+            {errors.password &&  <Error error="password is required" />}
             
             <button type="submit">ENTRAR</button>
           </form>
