@@ -1,18 +1,23 @@
+@import '../../sass/grid';
+
 .main-home {
   height: 100vh;
   transition: margin-left 0.5s ease-in-out;
-
-  padding: 0rem 3rem;
 
   img {
     cursor: pointer;
   }
 
   .info-home {
+    padding: 0 3rem;
     height: 15vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include device('s') {
+      padding: 0 1rem;
+    }
 
     nav {
       background-color: #0442bf;
@@ -38,9 +43,17 @@
       color: #f2e7dc;
       text-shadow: 0 0 1rem rgba(0, 0, 0, 0.499);
 
+      @include device('s') {
+        font-size: 2rem;
+      }
+
       img {
         width: 100%;
         max-width: 7rem;
+
+        @include device('s') {
+          max-width: 5rem;
+        }
       }
     }
 
@@ -48,6 +61,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+
+      @include device('s') {
+        justify-content: end;
+      }
 
       input {
         width: 100%;
@@ -58,6 +75,10 @@
         outline: none;
         background-color: #f2e7dc;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.38);
+
+        @include device('s') {
+          width: 50%;
+        }
 
         &::placeholder {
           color: #000;
@@ -70,6 +91,12 @@
         max-width: 3rem;
       }
 
+      @include device('s') {
+        .plus {
+          display: none;
+        }
+      }
+
       a {
         width: 100%;
         text-decoration: none;
@@ -78,24 +105,31 @@
         &:hover {
           color: #000;
         }
+
+        @include device('s') {
+          display: none;
+        }
       }
     }
   }
 }
 
 .table-container {
-  overflow: auto;
   width: 100%;
   height: 80vh;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 1rem 0 0 1rem;
+  overflow: auto;
 }
 
 table {
   width: 100%;
   height: 100%;
   border-collapse: collapse;
-  overflow: auto;
+
+  @include device('s') {
+    width: 100vw;
+  }
 }
 
 table,
@@ -118,6 +152,13 @@ th {
   color: #ffffff;
   background-image: linear-gradient(to bottom, #0442bf, #022859);
   border-bottom: 1px solid #0442bf;
+}
+
+td {
+  img {
+    width: 100%;
+    max-width: 2rem;
+  }
 }
 
 ::-webkit-scrollbar {
