@@ -1,3 +1,5 @@
+@import '../../sass/grid';
+
 .left-menu {
   background-image: linear-gradient(to bottom, #0442bf, #022859);
   color: #f2e7dc;
@@ -9,13 +11,18 @@
 
   .menu-icon {
     cursor: pointer;
-    width: 4rem;
+    width: 5rem;
     position: absolute;
-    right: -2.9rem;
+    right: -3.2rem;
     top: 40%;
 
+    @include device("s") {
+      top: 10%;
+      right: -3.8rem;
+    }
+
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
   }
 
