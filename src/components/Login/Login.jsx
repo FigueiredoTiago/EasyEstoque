@@ -57,8 +57,8 @@ const Login = () => {
             </Link>
 
             <div className="error-box">
-              {errors.email && <Error error="email is required" />}
-              {errors.password && <Error error="password is required" />}
+              {errors.email && <Error error="email is required!" />}
+              {errors.password && <Error error="password is required!" />}
             </div>
           </form>
         </div>

@@ -7,7 +7,6 @@ import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
 const Register = () => {
-  // eslint-disable-next-line no-unused-vars
   const {
     register,
     handleSubmit,
@@ -55,8 +54,9 @@ const Register = () => {
             />
 
             <select {...register("auth")}>
-              <option value="admin">administrador</option>
+              <option value=" "> Selecione </option>
               <option value="user"> usuario</option>
+              <option value="admin">administrador</option>
             </select>
 
             <button type="submit">Criar Usuario</button>
@@ -66,9 +66,9 @@ const Register = () => {
             </Link>
 
             <div className="error-box">
-              {errors.name && <Error error="Name is required" />}
-              {errors.email && <Error error="Email is required" />}
-              {errors.password && <Error error="password is required" />}
+              {errors.name && <Error error="Name is required!" />}
+              {errors.email && <Error error="Email is required!" />}
+              {errors.password && <Error error="password is required!" />}
             </div>
           </form>
         </div>
