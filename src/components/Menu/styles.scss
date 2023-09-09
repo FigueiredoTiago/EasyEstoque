@@ -8,7 +8,6 @@
   position: fixed;
   transition: width 0.5s ease-in-out;
   border-right: 4px ridge #f2e7dc;
-  
 
   .menu-icon {
     cursor: pointer;
@@ -18,8 +17,8 @@
     top: 40%;
 
     @include device("s") {
-      top: 10%;
-      right: -3.8rem;
+      top: 3%;
+      right: -4.3rem;
     }
 
     &:hover {
