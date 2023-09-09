@@ -1,4 +1,3 @@
-import "./styles.scss";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
-const Login = () => {
+const Register = () => {
   // eslint-disable-next-line no-unused-vars
   const {
     register,
@@ -39,6 +38,11 @@ const Login = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="login-form">
             <input
+              type="name"
+              {...register("name", { required: true })}
+              placeholder="Nome de Usuario"
+            />
+            <input
               type="email"
               {...register("email", { required: true })}
               placeholder="Email"
@@ -50,14 +54,20 @@ const Login = () => {
               placeholder="Password"
             />
 
-            <button type="submit">ENTRAR</button>
+            <select {...register("auth")}>
+              <option value="admin">administrador</option>
+              <option value="user"> usuario</option>
+            </select>
 
-            <Link to="/register" className="register-link">
-              +Novo Usuario
+            <button type="submit">Criar Usuario</button>
+
+            <Link to="/" className="register-link">
+            ▸Ja tem uma conta?
             </Link>
 
             <div className="error-box">
-              {errors.email && <Error error="email is required" />}
+              {errors.name && <Error error="Name is required" />}
+              {errors.email && <Error error="Email is required" />}
               {errors.password && <Error error="password is required" />}
             </div>
           </form>
@@ -69,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
