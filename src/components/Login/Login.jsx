@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <section className="login-section">
       <section className="container login-container">
-        <div className="login-card">
+        <div className="login-card login">
           <div className="box">
             <img src={box} />
             <h1>EasyEstoque</h1>

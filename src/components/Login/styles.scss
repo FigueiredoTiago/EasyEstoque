@@ -1,4 +1,4 @@
-@import '../../sass/grid';
+@import "../../sass/grid";
 .login-section {
   transition: margin 0.5s ease-in-out;
 
@@ -8,13 +8,22 @@
     align-items: center;
     justify-content: center;
 
+    .login-card.login {
+      height: 55vh;
+
+      form {
+        gap: .5rem;
+      }
+    }
+
     .login-card {
       background-color: #f2e7dc31;
       box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(1rem);
       width: 100%;
+      height: 75vh;
       max-width: 40rem;
-      height: 60vh;
+
       border-radius: 2rem;
 
       display: flex;
@@ -35,7 +44,7 @@
           height: 100%;
           max-width: 10rem;
 
-          @include device('s') {
+          @include device("s") {
             max-width: 9rem;
           }
         }
@@ -44,7 +53,7 @@
           font-size: 3rem;
           color: #f2e7dc;
 
-          @include device('s') {
+          @include device("s") {
             font-size: 2.4rem;
           }
         }
@@ -119,7 +128,7 @@
           border: none;
           padding: 1rem;
           width: 80%;
-          margin: 1rem 0;
+          margin-bottom: 1rem;
           background-color: #000;
           color: #f2e7dc;
           backdrop-filter: blur(10px);

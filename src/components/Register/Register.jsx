@@ -20,11 +20,11 @@ const Register = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    toast.success("Login successfully");
-
-    navigate("/home");
+    toast.success("Register successfully");
 
     reset();
+
+    navigate("/");
   };
 
   return (
@@ -62,7 +62,7 @@ const Register = () => {
             <button type="submit">Criar Usuario</button>
 
             <Link to="/" className="register-link">
-            ▸Ja tem uma conta?
+              ▸Ja tem uma conta?
             </Link>
 
             <div className="error-box">
