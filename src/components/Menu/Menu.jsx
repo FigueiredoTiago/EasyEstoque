@@ -21,8 +21,8 @@ const Menu = () => {
             <h3 className="username">Tiago.F</h3>
             <p>ADMIN</p>
           </div>
-          <nav>
 
+          <nav>
             <ul>
 
               <li> <img src={plus} /> <Link>Novo Produto</Link>   </li>

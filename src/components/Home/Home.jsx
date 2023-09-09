@@ -1,5 +1,4 @@
 import "./styles.scss";
-import "../Menu/styles.scss";
 import search from "../../assets/icons/search.png";
 import box from "../../assets/icons/box.png";
 import plus from "../../assets/icons/plus.png";

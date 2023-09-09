@@ -1,5 +1,4 @@
 import "./styles.scss";
-import "../Menu/styles.scss";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';

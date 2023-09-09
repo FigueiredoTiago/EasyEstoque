@@ -1,4 +1,4 @@
-@import '../../sass/grid';
+@import "../../sass/grid";
 
 .left-menu {
   background-image: linear-gradient(to bottom, #0442bf, #022859);
@@ -8,6 +8,7 @@
   position: fixed;
   transition: width 0.5s ease-in-out;
   border-right: 4px ridge #f2e7dc;
+  
 
   .menu-icon {
     cursor: pointer;
@@ -28,7 +29,8 @@
 
   .menu-content {
     opacity: 0;
-    transition: opacity 0.4s ease-in-out;
+    visibility: hidden;
+    transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
 
   .user-info {
@@ -64,10 +66,10 @@
       li {
         display: flex;
         align-items: center;
-        gap: .5rem;
+        gap: 0.5rem;
 
         a {
-          color:#f2e7dc;
+          color: #f2e7dc;
           text-decoration: none;
 
           &:hover {
@@ -89,6 +91,7 @@
 
   .menu-content {
     opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -99,5 +102,3 @@
 .left-menu.active + .login-section {
   margin-left: 25rem;
 }
-
-
