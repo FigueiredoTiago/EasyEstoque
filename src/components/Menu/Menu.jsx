@@ -13,6 +13,7 @@ const Menu = () => {
 
   return (
     <aside className="left-menu active">
+
       <img src={menu} onClick={openMenu} className="menu-icon" />
 
       <div className="menu-content">

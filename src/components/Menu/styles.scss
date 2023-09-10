@@ -4,25 +4,22 @@
   background-image: linear-gradient(to bottom, #0442bf, #022859);
   color: #f2e7dc;
   height: 100vh;
-  width: 0;
+  width: 0px;
   position: fixed;
   transition: width 0.5s ease-in-out;
   border-right: 4px ridge #f2e7dc;
+  z-index: 999;
 
   .menu-icon {
     cursor: pointer;
-    width: 5rem;
-    position: absolute;
-    right: -3.2rem;
-    top: 40%;
+    width: 4.5rem;
 
-    @include device("s") {
-      top: 3%;
-      right: -4.3rem;
-    }
+    position: absolute;
+    right: -4.6rem;
+    margin-top: 1rem;
 
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
   }
 
@@ -95,10 +92,9 @@
 }
 
 .left-menu.active + .main-home {
-  margin-left: 25rem;
+  margin-left: 26rem;
 }
 
 .left-menu.active + .login-section {
-  margin-left: 25rem;
+  margin-left: 26rem;
 }
-
