@@ -7,7 +7,7 @@
   width: 0px;
   position: fixed;
   transition: width 0.5s ease-in-out;
-  border-right: 4px ridge #f2e7dc;
+  border-right: 4px solid #f2e7dc;
   z-index: 999;
 
   .menu-icon {
@@ -15,12 +15,10 @@
     width: 4.5rem;
 
     position: absolute;
-    right: -4.6rem;
-    margin-top: 1rem;
+    right: -4.2rem;
+    margin-top: 7rem;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    transform: scaleX(-1);
   }
 
   .menu-content {
@@ -93,8 +91,15 @@
 
 .left-menu.active + .main-home {
   margin-left: 26rem;
+
+  @include device("s") {
+    margin-left: 0;
+  }
 }
 
 .left-menu.active + .login-section {
   margin-left: 26rem;
+  @include device("s") {
+    margin-left: 0;
+  }
 }
