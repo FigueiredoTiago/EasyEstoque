@@ -1,0 +1,21 @@
+.button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #f2e7dc;
+    transition: color 0.5s ease-in-out;
+
+    &:hover {
+        color: #312f2e;
+    }
+
+
+
+    img {
+        width: 100%;
+        max-width: 3rem;
+    }
+}
