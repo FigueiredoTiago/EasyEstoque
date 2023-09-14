@@ -2,25 +2,24 @@ import "./styles.scss";
 import search from "../../assets/icons/search.png";
 import box from "../../assets/icons/box.png";
 import Create from "../Modal/Create";
+import EditModal from "../Modal/EditModal";
 const Home = () => {
   return (
-    <main className="main-home"> 
+    <main className="main-home">
       <div className="container">
         <div className="info-home">
           <h1 className="logo">
             <img src={box} />
             EasyEstoque
           </h1>
-        
-          <div className="input-box">
 
+          <div className="input-box">
             <Create />
 
             <div className="search">
               <input type="text" placeholder="Search Products..." />
               <img src={search} alt="icon search" />
             </div>
-
           </div>
         </div>
 
@@ -43,13 +42,15 @@ const Home = () => {
                 <td>R$ 19.99</td>
                 <td>100</td>
                 <td>06/09/2023</td>
-                <td> <Create /> </td>
+                <td>
+                  {" "}
+                  <EditModal />{" "}
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-
     </main>
   );
 };
