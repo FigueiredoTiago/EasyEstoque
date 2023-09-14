@@ -1,9 +1,9 @@
 import "./styles.scss";
 import menu from "../../assets/icons/menu.png";
-import plus from '../../assets/icons/plus.png';
 import logout from '../../assets/icons/logout.png';
 import user from '../../assets/icons/user.png';
 import { Link } from "react-router-dom";
+import Create from "../Modal/Create";
 
 const Menu = () => {
   const openMenu = () => {
@@ -26,7 +26,7 @@ const Menu = () => {
           <nav>
             <ul>
 
-              <li> <img src={plus} /> <Link>Novo Produto</Link>   </li>
+              <li> <Create /> </li>
               <li> <img src={user} /> <Link>Fornecedores</Link> </li>
               <li> <img src={logout} /><Link>Logout</Link> </li>
 
