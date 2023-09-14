@@ -6,8 +6,11 @@ import EditModal from "../Modal/EditModal";
 const Home = () => {
   return (
     <main className="main-home">
+
       <div className="container">
+
         <div className="info-home">
+          
           <h1 className="logo">
             <img src={box} />
             EasyEstoque
@@ -15,12 +18,12 @@ const Home = () => {
 
           <div className="input-box">
             <Create />
-
             <div className="search">
               <input type="text" placeholder="Search Products..." />
               <img src={search} alt="icon search" />
             </div>
           </div>
+
         </div>
 
         <div className="table-container">

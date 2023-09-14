@@ -55,6 +55,7 @@
       .search {
         display: flex;
         align-items: center;
+        justify-content: end;
         gap: 0.5rem;
 
         input {
@@ -80,16 +81,6 @@
         img {
           width: 100%;
           max-width: 3rem;
-        }
-      }
-
-      @include device("s") {
-        justify-content: end;
-      }
-
-      @include device("s") {
-        .plus {
-          display: none;
         }
       }
     }
