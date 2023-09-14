@@ -1,21 +1,76 @@
 .button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    color: #f2e7dc;
-    transition: color 0.5s ease-in-out;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #f2e7dc;
+  transition: color 0.5s ease-in-out;
 
-    &:hover {
+  &:hover {
+    color: #312f2e;
+  }
+
+  img {
+    width: 100%;
+    max-width: 3rem;
+  }
+}
+
+
+.form-modal {
+    height: 100%;
+    width: 100%;
+
+    padding: 1rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        font-size: 1.8rem;
         color: #312f2e;
+        font-weight: bold;
+    }
+    
+
+    input {
+        width: 60%;
+        height: 4rem;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+
+
+        &::placeholder {
+            color: #312f2e;
+            font-weight: bold;
+        }
     }
 
+    button {
+        width: 50%;
+        height: 4rem;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        background-color: #312f2e;
+        color: #f2e7dc;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.5s ease-in-out;
 
-
-    img {
-        width: 100%;
-        max-width: 3rem;
+        &:hover {
+            background-color: #f2e7dc;
+            color: #312f2e;
+            border: 2px solid #312f2e;
+        }
     }
 }
