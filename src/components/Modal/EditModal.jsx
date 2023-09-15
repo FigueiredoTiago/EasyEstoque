@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import Box from "@mui/material/Box";
@@ -25,7 +26,7 @@ const style = {
   p: 0,
 };
 
-export default function EditModal() {
+export default function EditModal({ id }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -49,7 +50,7 @@ export default function EditModal() {
     <div>
       <h4 className="button create" onClick={handleOpen}>
         {" "}
-        <img src={editar} /> {" "}
+        <img src={editar} />{" "}
       </h4>
       <Modal
         open={open}
@@ -59,7 +60,7 @@ export default function EditModal() {
       >
         <Box sx={style}>
           <form onSubmit={handleSubmit(onSubmit)} className="form-modal">
-            <h2>Editar Produto</h2>
+            <h2>Editar Produto {id} </h2>
 
             <input
               type="text"

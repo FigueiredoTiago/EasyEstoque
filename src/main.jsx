@@ -3,6 +3,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
+
 //estilos globais
 import "./sass/Global.scss";
 
@@ -28,7 +30,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <PrivateRoute> <Home /> </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Home />{" "}
+          </PrivateRoute>
+        ),
       },
     ],
   },
