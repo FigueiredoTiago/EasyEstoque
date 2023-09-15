@@ -29,7 +29,6 @@ export const useGetProducts = () => {
 };
 
 //funcao para excluir um produto
-
 export const deleteProduct = async (productId, token) => {
   const url = `${import.meta.env.VITE_DELETE_PRODUCT}/${productId}`;
 
@@ -49,4 +48,3 @@ export const deleteProduct = async (productId, token) => {
   }
 };
 
-export default deleteProduct;
