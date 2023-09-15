@@ -27,3 +27,26 @@ export const useGetProducts = () => {
 
   return { products, loading };
 };
+
+//funcao para excluir um produto
+
+export const deleteProduct = async (productId, token) => {
+  const url = `${import.meta.env.VITE_DELETE_PRODUCT}/${productId}`;
+
+  try {
+    const response = await axios.delete(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return toast.success(response.data.message);
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      toast.error(error.response.data.message);
+    } else {
+      toast.error("Ocorreu um erro desconhecido.");
+    }
+  }
+};
+
+export default deleteProduct;

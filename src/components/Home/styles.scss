@@ -130,8 +130,22 @@ td {
 
 td {
   border-bottom: 2px ridge #f2e7dc;
-  .modal {
+}
+
+td div.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  img {
     width: 100%;
-    max-width: 2rem;
+    max-width: 2.5rem;
+
+    &:hover {
+      box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.38);
+      border-radius: .5rem;
+      transform: scale(1.3);
+    }
   }
 }

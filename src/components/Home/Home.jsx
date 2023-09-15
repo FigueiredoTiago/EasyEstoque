@@ -2,10 +2,13 @@
 import "./styles.scss";
 import search from "../../assets/icons/search.png";
 import box from "../../assets/icons/box.png";
+import del from "../../assets/icons/lixeira.png";
+
 import Create from "../Modal/Create";
 import EditModal from "../Modal/EditModal";
 
-import { useGetProducts } from "../../utils/Api";
+import { useGetProducts, deleteProduct } from "../../utils/Api";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   const { products, loading } = useGetProducts();
@@ -21,6 +24,14 @@ const Home = () => {
     return `${day < 10 ? "0" : ""}${day}/${
       month < 10 ? "0" : ""
     }${month}/${year}`;
+  };
+
+  const handleDelete = (id) => {
+    const token = 'dasdmklasmkdkalsklmkl67asdhbashb2adajksd';
+    const confirm = window.confirm("Deseja realmente excluir este produto?");
+    if (confirm) {
+      deleteProduct(id, token );
+    }
   };
 
   return (
@@ -54,7 +65,9 @@ const Home = () => {
               </tr>
             </thead>
             <tbody>
-              {data &&
+              {loading ? (
+                <span className="loader"></span>
+              ) : (
                 data.map((item) => (
                   <tr key={item._id}>
                     <td>{item.name}</td>
@@ -63,15 +76,21 @@ const Home = () => {
                     <td>{item.amount}</td>
                     <td>{formatDate(item.updated)}</td>
                     <td>
-                      {" "}
-                      <EditModal id={item._id} />{" "}
+                      <div className="actions">
+                        <EditModal id={item._id} />{" "}
+                        <img src={del} onClick={() => handleDelete(item._id)} />
+                      </div>
                     </td>
                   </tr>
-                ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
+
+      <ToastContainer />
+
     </main>
   );
 };
