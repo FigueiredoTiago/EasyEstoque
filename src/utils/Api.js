@@ -48,3 +48,37 @@ export const deleteProduct = async (productId, token) => {
   }
 };
 
+//funcao para login
+export const FetchLogin = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const url = import.meta.env.VITE_LOGIN_USER;
+
+  const fetchData = async (email, password) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(url, { email, password });
+      setData(response.data);
+      toast.success(response.data.message);
+      setLoading(false);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido.");
+        setError("Ocorreu um erro desconhecido.");
+      }
+      setLoading(false);
+    }
+  };
+
+  return { data, loading, error, fetchData };
+};

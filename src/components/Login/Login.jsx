@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
+import { FetchLogin } from '../../utils/Api';
+
 const Login = () => {
   // eslint-disable-next-line no-unused-vars
   const {
@@ -17,17 +19,15 @@ const Login = () => {
     reset,
   } = useForm();
 
+  const {data, error, fetchData, loading  } = FetchLogin();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-
-    toast.success("Login successfully");
-
-    navigate("/home");
-
+    fetchData(data.email, data.password);
     reset();
   };
+
+  console.log(data);
 
   return (
     <section className="login-section">
