@@ -56,8 +56,8 @@ export default function EditModal({ id }) {
     };
 
     editItem(id, dados, token);
-    handleClose();
     reset();
+    handleClose();
   };
 
   if (loading) {

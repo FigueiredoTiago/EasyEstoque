@@ -76,13 +76,18 @@ export const UpdateItem = () => {
       toast.success(response.data.message);
       setLoading(false);
       return response.data;
-    } catch (err) {
-      setError(
-        "Não foi possível editar o item. Por favor, tente novamente mais tarde."
-      );
-      toast.error(
-        "Não foi possível editar o item. Por favor, tente novamente mais tarde."
-      );
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido.");
+        setError("Ocorreu um erro desconhecido.");
+      }
       setLoading(false);
     } finally {
       setLoading(false);
