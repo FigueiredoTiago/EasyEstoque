@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Error from "../../utils/Error";
 
+import { useGetOneProduct, UpdateItem } from "../../utils/Api";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,18 +36,33 @@ export default function EditModal({ id }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, defaultValues },
     reset,
   } = useForm();
 
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjc3ODIyYjU3NzdiNTA2YTZjNzAyMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTY5NDgwNTEzNCwiZXhwIjoxNjk0ODkxNTM0fQ.5El9vUl0UWVscZ9s-Ea_cmthwfB05eJ4Wg08mUnVXZg";
+
+  const { item, loading } = useGetOneProduct(id, token);
+
+  const { editItem } = UpdateItem();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const dados = {
+      name: data.name,
+      description: data.description,
+      price: data.price,
+      amount: data.amount,
+    };
 
-    toast.success("Produto Atualizado com sucesso!");
-
+    editItem(id, dados, token);
+    handleClose();
     reset();
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div>
       <h4 className="button create" onClick={handleOpen}>
@@ -66,23 +83,27 @@ export default function EditModal({ id }) {
               type="text"
               {...register("name", { required: true })}
               placeholder="Nome do Produto"
+              defaultValue={item.name}
             />
             <input
               type="text"
               {...register("description", { required: true })}
               placeholder="Descricao"
+              defaultValue={item.description}
             />
 
             <input
               type="text"
               {...register("price", { required: true })}
               placeholder="Valor"
+              defaultValue={item.price}
             />
 
             <input
               type="text"
               {...register("amount", { required: true })}
               placeholder="Quantidade"
+              defaultValue={item.amount}
             />
 
             <button type="submit">Editar</button>

@@ -28,6 +28,70 @@ export const useGetProducts = () => {
   return { products, loading };
 };
 
+//funcao para pegar um produto apenas com o id
+
+export const useGetOneProduct = (itemId, token) => {
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const url = `${import.meta.env.VITE_GET_PRODUCTS}/${itemId}`;
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho da requisição
+          },
+        });
+        setItem(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erro ao buscar o item:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchItem();
+  }, [url, itemId, token]);
+
+  return { item, loading };
+};
+
+//funca para editar um produto
+export const UpdateItem = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const editItem = async (id, data, token) => {
+    const url = `${import.meta.env.VITE_GET_PRODUCTS}`;
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.patch(`${url}/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success(response.data.message);
+      setLoading(false);
+      return response.data;
+    } catch (err) {
+      setError(
+        "Não foi possível editar o item. Por favor, tente novamente mais tarde."
+      );
+      toast.error(
+        "Não foi possível editar o item. Por favor, tente novamente mais tarde."
+      );
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { editItem, loading, error };
+};
+
 //funcao para excluir um produto
 export const deleteProduct = async (productId, token) => {
   const url = `${import.meta.env.VITE_DELETE_PRODUCT}/${productId}`;
