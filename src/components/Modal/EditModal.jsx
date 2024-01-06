@@ -41,7 +41,7 @@ export default function EditModal({ id }) {
   } = useForm();
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjc3ODIyYjU3NzdiNTA2YTZjNzAyMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTY5NDgwNTEzNCwiZXhwIjoxNjk0ODkxNTM0fQ.5El9vUl0UWVscZ9s-Ea_cmthwfB05eJ4Wg08mUnVXZg";
+    "";
 
   const { item, loading } = useGetOneProduct(id, token);
 

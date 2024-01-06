@@ -20,11 +20,12 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    //importar a função de cadastro ainda
     console.log(data);
 
-    toast.success("Login successfully");
+    toast.success("Cadastro successfully");
 
-    navigate("/home");
+    // navigate("/home");
 
     reset();
   };
