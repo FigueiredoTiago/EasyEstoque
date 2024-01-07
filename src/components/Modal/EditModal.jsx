@@ -40,8 +40,7 @@ export default function EditModal({ id }) {
     reset,
   } = useForm();
 
-  const token =
-    "";
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNDYyMTY4NywiZXhwIjoxNzA0NzA4MDg3fQ.oXVATMpfUMabEYIhoF752SHNcv2JVbNnryoGXyOXh-Y";
 
   const { item, loading } = useGetOneProduct(id, token);
 

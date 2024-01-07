@@ -25,6 +25,7 @@ const Login = () => {
   const onSubmit = (data) => {
     fetchData(data.email, data.password);
     reset();
+    navigate("/home");
   };
 
   console.log(data);
