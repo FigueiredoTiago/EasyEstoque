@@ -19,16 +19,17 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const {data, error, fetchData, loading  } = FetchLogin();
+  const { data, error, fetchData, loading } = FetchLogin();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
     fetchData(data.email, data.password);
     reset();
-    navigate("/home");
+    // navigate("/home");
   };
-
   console.log(data);
+
+  
 
   return (
     <section className="login-section">
@@ -36,7 +37,7 @@ const Login = () => {
       <section className="container login-container">
 
 
-        <div className="box">      
+        <div className="box">
           <img src={box} alt="box" />
           <h1>EasyEstoque</h1>
 
@@ -54,7 +55,7 @@ const Login = () => {
             placeholder="Password"
           />
           <button type="submit">ENTRAR</button>
-          
+
           <Link to="/register" className="register-link">
             +Novo Usuario
           </Link>

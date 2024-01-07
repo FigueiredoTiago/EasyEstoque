@@ -27,8 +27,7 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjc3ODIyYjU3NzdiNTA2YTZjNzAyMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTY5NDgwNTEzNCwiZXhwIjoxNjk0ODkxNTM0fQ.5El9vUl0UWVscZ9s-Ea_cmthwfB05eJ4Wg08mUnVXZg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNDYyMzA4MSwiZXhwIjoxNzA0NzA5NDgxfQ.V5RNzCH718wSv6cf3gtKhDxf5l249AoxzEYZ4vPPm3s";
 
     const confirm = window.confirm("Deseja realmente excluir este produto?");
     if (confirm) {
