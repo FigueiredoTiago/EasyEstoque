@@ -29,7 +29,6 @@ const Login = () => {
   };
   console.log(data);
 
-  
 
   return (
     <section className="login-section">

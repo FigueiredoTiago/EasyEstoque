@@ -151,3 +151,42 @@ export const FetchLogin = () => {
 
   return { data, loading, error, fetchData };
 };
+
+
+//funcao para registrar um usuario 
+
+export const FetchRegister = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+
+  const url = import.meta.env.VITE_CREATE_USER;
+
+  const registerUser = async (name, email, password, auth) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(url, { name, email, password, auth });
+      setData(response.data);
+      toast.success(response.data.message);
+      setsucces(true);
+      setLoading(false);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido.");
+        setError("Ocorreu um erro desconhecido.");
+      }
+      setLoading(false);
+    }
+  };
+
+  return { data, loading, error, registerUser };
+};

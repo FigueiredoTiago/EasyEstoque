@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 // import "./styles.scss";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
+
+import { FetchRegister } from '../../utils/Api';
 
 const Register = () => {
   // eslint-disable-next-line no-unused-vars
@@ -19,14 +22,11 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  const { loading, error, registerUser } = FetchRegister();
+
   const onSubmit = (data) => {
-    //importar a função de cadastro ainda
-    console.log(data);
-
-    toast.success("Cadastro successfully");
-
-    // navigate("/home");
-
+    //funcao de cadastro de usuarios...
+    registerUser(data.name, data.email, data.password, data.auth);
     reset();
   };
 
