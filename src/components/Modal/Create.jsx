@@ -11,6 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Error from "../../utils/Error";
 
+import { CreateProduct } from "../../utils/Api";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,10 +39,12 @@ export default function Create() {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { newProduct } = CreateProduct();
 
-    toast.success("Produto cadastrado com sucesso!");
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q';
+
+  const onSubmit = (data) => {
+    newProduct(data, token);
 
     reset();
   };

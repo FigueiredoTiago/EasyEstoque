@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   const { products, loading } = useGetProducts();
+
   const data = products.results;
 
   const formatDate = (dateString) => {
@@ -27,9 +28,10 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    const token = "";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q";
 
     const confirm = window.confirm("Deseja realmente excluir este produto?");
+
     if (confirm) {
       deleteProduct(id, token);
     }

@@ -190,3 +190,43 @@ export const FetchRegister = () => {
 
   return { data, loading, error, registerUser };
 };
+
+//funcao para criar um produto
+export const CreateProduct = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const newProduct = async (data, token) => {
+    const url = `${import.meta.env.VITE_CREATE_PRODUCT}`;
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(url, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success(response.data.message);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido.");
+        setError("Ocorreu um erro desconhecido.");
+      }
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { newProduct, loading, error };
+};
