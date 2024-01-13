@@ -24,10 +24,14 @@ const Login = () => {
 
   const onSubmit = (data) => {
     fetchData(data.email, data.password);
-    reset();
+    // reset();
     // navigate("/home");
   };
+
   console.log(data);
+
+  
+
 
 
   return (

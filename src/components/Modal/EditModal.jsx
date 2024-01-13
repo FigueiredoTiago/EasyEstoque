@@ -40,11 +40,15 @@ export default function EditModal({ id }) {
     reset,
   } = useForm();
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNDYyMTY4NywiZXhwIjoxNzA0NzA4MDg3fQ.oXVATMpfUMabEYIhoF752SHNcv2JVbNnryoGXyOXh-Y";
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q";
 
   const { item, loading } = useGetOneProduct(id, token);
+  //funcao que puxa o item pelo id
+
+  console.log(item);
 
   const { editItem } = UpdateItem();
+  //funcao para editar o item que ja puxamos
 
   const onSubmit = (data) => {
     const dados = {
@@ -78,32 +82,34 @@ export default function EditModal({ id }) {
           <form onSubmit={handleSubmit(onSubmit)} className="form-modal">
             <h2>Editar Produto {id} </h2>
 
-            <input
+            {item && <input
               type="text"
               {...register("name", { required: true })}
               placeholder="Nome do Produto"
               defaultValue={item.name}
-            />
-            <input
+            />}
+
+
+            {item && <input
               type="text"
               {...register("description", { required: true })}
               placeholder="Descricao"
               defaultValue={item.description}
-            />
+            />}
 
-            <input
+            {item && <input
               type="text"
               {...register("price", { required: true })}
               placeholder="Valor"
               defaultValue={item.price}
-            />
+            />}
 
-            <input
+            {item && <input
               type="text"
               {...register("amount", { required: true })}
               placeholder="Quantidade"
               defaultValue={item.amount}
-            />
+            />}
 
             <button type="submit">Editar</button>
 
