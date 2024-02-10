@@ -10,7 +10,13 @@ import EditModal from "../Modal/EditModal";
 import { useGetProducts, deleteProduct } from "../../utils/Api";
 import { ToastContainer } from "react-toastify";
 
+//redux 
+import { useSelector } from 'react-redux';
+
 const Home = () => {
+
+  const { data: authInfo } = useSelector((state) => state.auth);
+
   const { products, loading } = useGetProducts();
 
   const data = products.results;
@@ -22,13 +28,12 @@ const Home = () => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    return `${day < 10 ? "0" : ""}${day}/${
-      month < 10 ? "0" : ""
-    }${month}/${year}`;
+    return `${day < 10 ? "0" : ""}${day}/${month < 10 ? "0" : ""
+      }${month}/${year}`;
   };
 
   const handleDelete = (id) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q";
+    const token = authInfo.token;
 
     const confirm = window.confirm("Deseja realmente excluir este produto?");
 

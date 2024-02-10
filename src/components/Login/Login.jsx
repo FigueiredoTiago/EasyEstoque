@@ -28,7 +28,6 @@ const Login = () => {
     reset,
   } = useForm();
 
-  //const { data, error, fetchData, loading } = FetchLogin();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -37,13 +36,9 @@ const Login = () => {
     if (error) {
       toast.error(error);
     }
-
-    //fetchData(data.email, data.password);
-    // reset();
-    // navigate("/home");
+    reset();
+    navigate("/home");
   };
-
-  console.log(data);
 
 
   return (
