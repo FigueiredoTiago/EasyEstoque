@@ -1,9 +1,14 @@
-import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+// store.js
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import authReducer from './reducers/login';
 
-const middleware = [...getDefaultMiddleware()];
 
-const reducer = combineReducers({});
 
-const store = configureStore({reducer, middleware});
+// Corrija aqui para usar o nome correto do reducer
+const reducer = combineReducers({
+    auth: authReducer, // use 'auth' como a chave do seu reducer
+});
+
+const store = configureStore({ reducer });
 
 export default store;

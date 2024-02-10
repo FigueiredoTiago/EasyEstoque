@@ -118,7 +118,27 @@ export const deleteProduct = async (productId, token) => {
 };
 
 //funcao para login
-export const FetchLogin = () => {
+
+export const fetchData = async (email, password) => {
+  try {
+    const response = await axios.post(import.meta.env.VITE_LOGIN_USER, { email, password });
+    toast.success(response.data.message);
+    return response.data; // Retorna os dados da resposta
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      toast.error(error.response.data.message);
+      throw error.response.data.message;
+    } else {
+      toast.error('Ocorreu um erro desconhecido.');
+      throw 'Ocorreu um erro desconhecido.';
+    }
+  }
+};
+
+
+
+
+/*export const FetchLogin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -150,7 +170,7 @@ export const FetchLogin = () => {
   };
 
   return { data, loading, error, fetchData };
-};
+}; */
 
 
 //funcao para registrar um usuario 

@@ -1,18 +1,37 @@
-import createAsyncSlice from '../helper/createAsyncSlice';
-import { TOKEN_POST } from '../../Components/Hooks/Api';
+// reducers/authSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchData } from '../../utils/Api';
 
-const login = createAsyncSlice({
-    name: 'token',
-    initialState: {
-        data: {
-            token: window.localStorage.getItem('token') || null,
-        },
-    },
-    fetchConfig: (user) => TOKEN_POST(user),
+// Crie uma função assíncrona para lidar com o fetch de login
+export const fetchLogin = createAsyncThunk('auth/fetchLogin', async ({ email, password }) => {
+    const data = await fetchData(email, password);
+    return data; // Retorna os dados para serem tratados no fulfilled
 });
 
-export const fetchToken = login.asyncAction;
+// Crie o slice
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        data: null,
+        loading: false,
+        error: null,
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchLogin.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchLogin.fulfilled, (state, action) => {
+                state.loading = false;
+                state.data = action.payload;
+            })
+            .addCase(fetchLogin.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Ocorreu um erro desconhecido.';
+            });
+    },
+});
 
-export default login.reducer;
-
-export const { resetState: resetTokenState } = login.actions;
+export default authSlice.reducer;

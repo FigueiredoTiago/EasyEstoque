@@ -8,10 +8,19 @@ import { Link, useNavigate } from "react-router-dom";
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
-import { FetchLogin } from '../../utils/Api';
+//import { FetchLogin } from '../../utils/Api';
+
+//redux
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchLogin } from '../../store/reducers/login';
 
 const Login = () => {
-  // eslint-disable-next-line no-unused-vars
+
+  const dispatch = useDispatch();
+  const { data, error, loading } = useSelector((state) => state.auth);
+
   const {
     register,
     handleSubmit,
@@ -19,19 +28,22 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const { data, error, fetchData, loading } = FetchLogin();
+  //const { data, error, fetchData, loading } = FetchLogin();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    fetchData(data.email, data.password);
+
+    dispatch(fetchLogin(data));
+    if (error) {
+      toast.error(error);
+    }
+
+    //fetchData(data.email, data.password);
     // reset();
     // navigate("/home");
   };
 
   console.log(data);
-
-  
-
 
 
   return (
