@@ -5,13 +5,19 @@ import box from "../../assets/icons/box.png";
 import del from "../../assets/icons/lixeira.png";
 
 import Create from "../Modal/Create";
-import EditModal from "../Modal/EditModal";
+import EditModal from "../Modal/EditModal";    
 
 import { useGetProducts, deleteProduct } from "../../utils/Api";
 import { ToastContainer } from "react-toastify";
 
 //redux 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setProducts,
+  addProduct,
+  editProduct,
+  deleteProduct,
+} from "../store/reducers/products";
 
 const Home = () => {
 
