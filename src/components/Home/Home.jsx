@@ -12,7 +12,7 @@ import axios from "axios";
 const loading = false;
 
 //import { useGetProducts, deleteProduct } from "../../utils/Api";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -28,7 +28,8 @@ const Home = () => {
   const products = useSelector((state) => state.products.products.results);
 
   const { data } = useSelector((state) => state.auth); //sera usado mais tarde ao estar logado
-
+  const token = data?.token;
+  console.log("token", token);
 
   const fetchProductsFromApi = async () => {
     const url = import.meta.env.VITE_GET_PRODUCTS;
@@ -58,13 +59,31 @@ const Home = () => {
     }${month}/${year}`;
   };
 
-
-  const handleDelete = (id) => {
-    
+  const handleDelete = async (id) => {
     const confirm = window.confirm("Deseja realmente excluir este produto?");
 
+    const url = `${import.meta.env.VITE_DELETE_PRODUCT}/${id}`;
+
     if (confirm) {
-      dispatch(deleteProduct(id));
+      try {
+        const response = await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        dispatch(deleteProduct(id));
+        return toast.success(response.data.message);
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Ocorreu um erro desconhecido.");
+        }
+      }
     }
   };
 

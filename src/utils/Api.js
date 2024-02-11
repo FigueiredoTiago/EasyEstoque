@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-//funcao para pegar todos os Produtos
+//funcao para pegar todos os Produtos // nao esta sendo usado
 export const useGetProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,6 @@ export const useGetProducts = () => {
 };
 
 //funcao para pegar um produto apenas com o id
-
 export const useGetOneProduct = (itemId, token) => {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
