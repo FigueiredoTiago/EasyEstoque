@@ -1,31 +1,50 @@
 /* eslint-disable no-unused-vars */
+import React, { useEffect } from "react";
 import "./styles.scss";
 import search from "../../assets/icons/search.png";
 import box from "../../assets/icons/box.png";
 import del from "../../assets/icons/lixeira.png";
 
 import Create from "../Modal/Create";
-import EditModal from "../Modal/EditModal";    
+import EditModal from "../Modal/EditModal";
+import axios from "axios";
 
-import { useGetProducts, deleteProduct } from "../../utils/Api";
+const loading = false;
+
+//import { useGetProducts, deleteProduct } from "../../utils/Api";
 import { ToastContainer } from "react-toastify";
 
-//redux 
-import { useSelector, useDispatch } from 'react-redux';
+//redux
+import { useSelector, useDispatch } from "react-redux";
 import {
   setProducts,
   addProduct,
   editProduct,
   deleteProduct,
-} from "../store/reducers/products";
+} from "../../store/reducers/products";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products.results);
 
-  const { data: authInfo } = useSelector((state) => state.auth);
+  const { data } = useSelector((state) => state.auth); //sera usado mais tarde ao estar logado
 
-  const { products, loading } = useGetProducts();
 
-  const data = products.results;
+  const fetchProductsFromApi = async () => {
+    const url = import.meta.env.VITE_GET_PRODUCTS;
+    try {
+      const response = await axios.get(url);
+      dispatch(setProducts(response.data));
+    } catch (error) {
+      console.error("Error fetching Products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductsFromApi();
+  }, []);
+
+  console.log("products", products);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -34,17 +53,18 @@ const Home = () => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    return `${day < 10 ? "0" : ""}${day}/${month < 10 ? "0" : ""
-      }${month}/${year}`;
+    return `${day < 10 ? "0" : ""}${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year}`;
   };
 
-  const handleDelete = (id) => {
-    const token = authInfo.token;
 
+  const handleDelete = (id) => {
+    
     const confirm = window.confirm("Deseja realmente excluir este produto?");
 
     if (confirm) {
-      deleteProduct(id, token);
+      dispatch(deleteProduct(id));
     }
   };
 
@@ -82,7 +102,7 @@ const Home = () => {
               {loading ? (
                 <span className="loader"></span>
               ) : (
-                data.map((item) => (
+                products.map((item) => (
                   <tr key={item._id}>
                     <td>{item.name}</td>
                     <td>{item.description}</td>
