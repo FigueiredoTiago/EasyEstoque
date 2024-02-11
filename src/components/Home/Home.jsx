@@ -18,8 +18,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setProducts,
-  addProduct,
-  editProduct,
   deleteProduct,
 } from "../../store/reducers/products";
 

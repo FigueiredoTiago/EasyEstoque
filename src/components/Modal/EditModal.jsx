@@ -3,6 +3,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import axios from "axios";
 
 import "./styles.scss";
 import editar from "../../assets/icons/editar.png";
@@ -12,7 +13,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Error from "../../utils/Error";
 
-import { useGetOneProduct, UpdateItem } from "../../utils/Api";
+import { useGetOneProduct } from "../../utils/Api";
+
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { editProduct } from "../../store/reducers/products";
 
 const style = {
   position: "absolute",
@@ -32,6 +37,7 @@ export default function EditModal({ id }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -40,17 +46,13 @@ export default function EditModal({ id }) {
     reset,
   } = useForm();
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q";
+  const { data } = useSelector((state) => state.auth);
+  const token = data?.token;
 
   const { item, loading } = useGetOneProduct(id, token);
   //funcao que puxa o item pelo id
 
-  console.log(item);
-
-  const { editItem } = UpdateItem();
-  //funcao para editar o item que ja puxamos
-
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const dados = {
       name: data.name,
       description: data.description,
@@ -58,7 +60,31 @@ export default function EditModal({ id }) {
       amount: data.amount,
     };
 
-    editItem(id, dados, token);
+    //editItem(id, dados, token);
+
+    const url = `${import.meta.env.VITE_GET_PRODUCTS}`;
+
+    try {
+      const response = await axios.patch(`${url}/${id}`, dados, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success(response.data.message);
+      dispatch(editProduct({ id, updatedProduct: dados }));
+      return response.data;
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido.");
+      }
+    }
+
     reset();
     handleClose();
   };
@@ -82,34 +108,41 @@ export default function EditModal({ id }) {
           <form onSubmit={handleSubmit(onSubmit)} className="form-modal">
             <h2>Editar Produto {id} </h2>
 
-            {item && <input
-              type="text"
-              {...register("name", { required: true })}
-              placeholder="Nome do Produto"
-              defaultValue={item.name}
-            />}
+            {item && (
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                placeholder="Nome do Produto"
+                defaultValue={item.name}
+              />
+            )}
 
+            {item && (
+              <input
+                type="text"
+                {...register("description", { required: true })}
+                placeholder="Descricao"
+                defaultValue={item.description}
+              />
+            )}
 
-            {item && <input
-              type="text"
-              {...register("description", { required: true })}
-              placeholder="Descricao"
-              defaultValue={item.description}
-            />}
+            {item && (
+              <input
+                type="text"
+                {...register("price", { required: true })}
+                placeholder="Valor"
+                defaultValue={item.price}
+              />
+            )}
 
-            {item && <input
-              type="text"
-              {...register("price", { required: true })}
-              placeholder="Valor"
-              defaultValue={item.price}
-            />}
-
-            {item && <input
-              type="text"
-              {...register("amount", { required: true })}
-              placeholder="Quantidade"
-              defaultValue={item.amount}
-            />}
+            {item && (
+              <input
+                type="text"
+                {...register("amount", { required: true })}
+                placeholder="Quantidade"
+                defaultValue={item.amount}
+              />
+            )}
 
             <button type="submit">Editar</button>
 

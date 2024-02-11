@@ -19,7 +19,7 @@ const productsSlice = createSlice({
       const { id, updatedProduct } = action.payload;
       const index = state.products.results.findIndex((product) => product._id === id);
       if (index !== -1) {
-        state.products[index] = updatedProduct;
+        state.products.results[index] = updatedProduct;
       }
     },
     deleteProduct: (state, action) => {
