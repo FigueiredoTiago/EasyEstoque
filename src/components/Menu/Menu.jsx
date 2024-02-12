@@ -2,20 +2,29 @@ import "./styles.scss";
 import menu from "../../assets/icons/menu.png";
 import logout from "../../assets/icons/logout.png";
 import user from "../../assets/icons/user.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Create from "../Modal/Create";
 
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout } from "../../store/reducers/login";
 
 const Menu = () => {
+  const dispatch = useDispatch();
   const { data } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const openMenu = () => {
     if (data) {
       const menu = document.querySelector(".left-menu");
       menu.classList.toggle("active");
     }
+  };
+
+  const handleLogout = () => {
+    // Despache a action de logout
+    dispatch(userLogout());
+    navigate("/");
   };
 
   return (
@@ -46,7 +55,7 @@ const Menu = () => {
               <li>
                 {" "}
                 <img src={logout} />
-                <Link to="/logout">Logout</Link>{" "}
+                <p onClick={handleLogout}>Logout</p>
               </li>
             )}
           </ul>
