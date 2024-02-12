@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
-import { FetchRegister } from '../../utils/Api';
+import { FetchRegister } from "../../utils/Api";
 
 const Register = () => {
   // eslint-disable-next-line no-unused-vars
@@ -22,11 +22,10 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const { loading, error, registerUser } = FetchRegister();
+  const { loading, error, registerUser, data } = FetchRegister();
 
-  const onSubmit = (data) => {
-    //funcao de cadastro de usuarios...
-    registerUser(data.name, data.email, data.password, data.auth);
+  const onSubmit = async (data) => {
+    await registerUser(data.name, data.email, data.password, data.auth);
     reset();
   };
 
@@ -70,7 +69,6 @@ const Register = () => {
             {errors.email && <Error error="email is required!" />}
             {errors.password && <Error error="password is required!" />}
             {errors.name && <Error error="name is required!" />}
-
           </div>
         </form>
       </section>
