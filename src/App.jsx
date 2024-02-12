@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Route } from "react-router-dom";
 import Menu from "./components/Menu/Menu";
 
-import { Provider } from 'react-redux'
-import store from './store/configureStore';
+import { Provider } from "react-redux";
+import store from "./store/configureStore";
 
 const App = () => {
   return (

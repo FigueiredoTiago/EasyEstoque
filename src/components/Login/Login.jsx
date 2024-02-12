@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,16 +9,13 @@ import { Link, useNavigate } from "react-router-dom";
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";
 
-//import { FetchLogin } from '../../utils/Api';
-
 //redux
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import { fetchLogin } from '../../store/reducers/login';
+import { fetchLogin } from "../../store/reducers/login";
 
 const Login = () => {
-
   const dispatch = useDispatch();
   const { data, error, loading } = useSelector((state) => state.auth);
 
@@ -31,26 +29,26 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-
     dispatch(fetchLogin(data));
+    reset();
     if (error) {
       toast.error(error);
     }
-    reset();
-    navigate("/home");
   };
 
+  useEffect(() => {
+    if (data) {
+      // Se o login for bem-sucedido, navegue para "/home"
+      navigate("/home");
+    }
+  }, [data, navigate]);
 
   return (
     <section className="login-section">
-
       <section className="container login-container">
-
-
         <div className="box">
           <img src={box} alt="box" />
           <h1>EasyEstoque</h1>
-
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
@@ -74,9 +72,7 @@ const Login = () => {
             {errors.email && <Error error="email is required!" />}
             {errors.password && <Error error="password is required!" />}
           </div>
-
         </form>
-
       </section>
 
       <ToastContainer />
