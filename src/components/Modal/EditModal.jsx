@@ -60,8 +60,6 @@ export default function EditModal({ id }) {
       amount: data.amount,
     };
 
-    //editItem(id, dados, token);
-
     const url = `${import.meta.env.VITE_GET_PRODUCTS}`;
 
     try {
@@ -71,7 +69,8 @@ export default function EditModal({ id }) {
         },
       });
       toast.success(response.data.message);
-      dispatch(editProduct({ id, updatedProduct: dados }));
+      dispatch(editProduct({ id, updatedProduct: response.data.product }));
+      handleClose();
       return response.data;
     } catch (error) {
       if (
@@ -84,9 +83,7 @@ export default function EditModal({ id }) {
         toast.error("Ocorreu um erro desconhecido.");
       }
     }
-
     reset();
-    handleClose();
   };
 
   if (loading) {
