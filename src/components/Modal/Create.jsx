@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import axios from "axios";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -11,7 +12,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Error from "../../utils/Error";
 
-import { CreateProduct } from "../../utils/Api";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct } from "../../store/reducers/products";
 
 const style = {
   position: "absolute",
@@ -19,7 +22,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "90vw",
-  maxWidth: '60rem',
+  maxWidth: "60rem",
   height: "60vh",
   bgcolor: "#f2e7dc",
   boxShadow: 24,
@@ -31,6 +34,7 @@ export default function Create() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -39,12 +43,32 @@ export default function Create() {
     reset,
   } = useForm();
 
-  const { newProduct } = CreateProduct();
+  const { data } = useSelector((state) => state.auth);
+  const token = data?.token;
 
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWE3NjViMmMzZjhmYzhkZGY4NGJkMSIsImF1dGgiOiJhZG1pbiIsImlhdCI6MTcwNTE3MTczNiwiZXhwIjoxNzA1MjU4MTM2fQ.Ln2yl_eAqa8D-WEivhpDWRWS2By7_NtW3Z0R-T8ve4Q';
+  const onSubmit = async (data) => {
+    const url = `${import.meta.env.VITE_CREATE_PRODUCT}`;
 
-  const onSubmit = (data) => {
-    newProduct(data, token);
+    try {
+      const response = await axios.post(url, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(addProduct(response.data.product));
+      toast.success(response.data.message);
+      return response.data;
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Ocorreu um erro desconhecido." + error);
+      }
+    }
 
     reset();
   };
