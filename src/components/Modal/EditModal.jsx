@@ -103,7 +103,7 @@ export default function EditModal({ id }) {
       >
         <Box sx={style}>
           <form onSubmit={handleSubmit(onSubmit)} className="form-modal">
-            <h2>Editar Produto {id} </h2>
+            <h2>Editar Produto</h2>
 
             {item && (
               <input

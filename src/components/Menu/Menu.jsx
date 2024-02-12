@@ -39,7 +39,7 @@ const Menu = () => {
             {data && (
               <li>
                 {" "}
-                <img src={user} /> <Link to="/fornecedores">Fornecedores</Link>{" "}
+                <img src={user} /> <Link to="/home">Fornecedores</Link>{" "}
               </li>
             )}
             {data && (
