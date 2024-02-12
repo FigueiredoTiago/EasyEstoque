@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import search from "../../assets/icons/search.png";
 import box from "../../assets/icons/box.png";
@@ -9,41 +9,38 @@ import Create from "../Modal/Create";
 import EditModal from "../Modal/EditModal";
 import axios from "axios";
 
-const loading = false;
-
 //import { useGetProducts, deleteProduct } from "../../utils/Api";
 import { ToastContainer, toast } from "react-toastify";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setProducts,
-  deleteProduct,
-} from "../../store/reducers/products";
+import { setProducts, deleteProduct } from "../../store/reducers/products";
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products.results);
 
   const { data } = useSelector((state) => state.auth); //sera usado mais tarde ao estar logado
   const token = data?.token;
-  console.log("token", token);
 
   const fetchProductsFromApi = async () => {
     const url = import.meta.env.VITE_GET_PRODUCTS;
     try {
+      setLoading(true);
       const response = await axios.get(url);
       dispatch(setProducts(response.data));
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching Products:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchProductsFromApi();
   }, []);
-
-  console.log("products", products);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
