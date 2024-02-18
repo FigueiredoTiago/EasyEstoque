@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
-import search from "../../assets/icons/search.png";
+
 import box from "../../assets/icons/box.png";
 import del from "../../assets/icons/lixeira.png";
 
 import Create from "../Modal/Create";
 import EditModal from "../Modal/EditModal";
 import axios from "axios";
+import Search from "../Search/Search";
+import { setSearchResults } from "../../store/reducers/search";
 
 //import { useGetProducts, deleteProduct } from "../../utils/Api";
 import { ToastContainer, toast } from "react-toastify";
@@ -82,6 +84,29 @@ const Home = () => {
     }
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const searchProducts = async (searchTerm) => {
+    const token = data?.token;
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.get(
+        `https://api-estoque-eh9u.onrender.com/product/search?name=${searchTerm}`,
+        {
+          headers,
+        }
+      );
+      dispatch(setSearchResults(response.data));
+    } catch (error) {
+      console.error("Erro na pesquisa de produtos:", error);
+    }
+  };
+  
+  //resultado das pesquisas
+  const searchResults = useSelector((state) => state.search.searchResults);
+
   return (
     <main className="main-home">
       <div className="container">
@@ -94,8 +119,20 @@ const Home = () => {
           <div className="input-box">
             <Create />
             <div className="search">
-              <input type="text" placeholder="Search Products..." />
-              <img src={search} alt="icon search" />
+              <input
+                type="text"
+                placeholder="Search Products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+
+              <button
+                onClick={() => {
+                  searchProducts(searchTerm);
+                }}
+              >
+                pesquisar
+              </button>
             </div>
           </div>
         </div>
@@ -135,7 +172,42 @@ const Home = () => {
             </tbody>
           </table>
         </div>
+        
       </div>
+
+      {searchResults && searchResults.length > 0 && (
+        <div className="search-results">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Atualizado</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {searchResults.map((item) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>{item.price}</td>
+                  <td>{item.amount}</td>
+                  <td>{formatDate(item.updated)}</td>
+                  <td>
+                    <div className="actions">
+                      <EditModal id={item._id} />{" "}
+                      <img src={del} onClick={() => handleDelete(item._id)} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       <ToastContainer />
     </main>

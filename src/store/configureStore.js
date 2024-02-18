@@ -2,6 +2,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from './reducers/login';
 import productsReducer from './reducers/products';
+import search from './reducers/search';
 
 
 
@@ -9,6 +10,7 @@ import productsReducer from './reducers/products';
 const reducer = combineReducers({
     auth: authReducer, // use 'auth' como a chave do seu reducer
     products: productsReducer,
+    search: search,
 });
 
 const store = configureStore({ reducer });
