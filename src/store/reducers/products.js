@@ -28,10 +28,14 @@ const productsSlice = createSlice({
         (product) => product._id !== id
       );
     },
+    searchByName: (state, action) => {
+      const searchResults = action.payload;
+      state.products.results = searchResults;
+    },
   },
 });
 
-export const { setProducts, addProduct, editProduct, deleteProduct } =
+export const { setProducts, addProduct, editProduct, deleteProduct, searchByName } =
   productsSlice.actions;
 
 export default productsSlice.reducer;
