@@ -4,7 +4,7 @@ import "./styles.scss";
 
 import box from "../../assets/icons/box.png";
 import del from "../../assets/icons/lixeira.png";
-
+import searchBtn from "../../assets/icons/search.png";
 import Create from "../Modal/Create";
 import EditModal from "../Modal/EditModal";
 import axios from "axios";
@@ -127,12 +127,16 @@ const Home = () => {
             <div className="search">
               <input
                 type="text"
-                placeholder="Search Products..."
+                placeholder="Pesquise Aqui..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
 
-              <button onClick={performSearchByName}>pesquisar</button>
+              <img
+                src={searchBtn}
+                alt="btn search"
+                onClick={performSearchByName}
+              />
             </div>
           </div>
         </div>
@@ -153,21 +157,27 @@ const Home = () => {
               {loading ? (
                 <span className="loader"></span>
               ) : (
-                products.map((item) => (
-                  <tr key={item._id}>
-                    <td>{item.name}</td>
-                    <td>{item.description}</td>
-                    <td>{item.price}</td>
-                    <td>{item.amount}</td>
-                    <td>{formatDate(item.updated)}</td>
-                    <td>
-                      <div className="actions">
-                        <EditModal id={item._id} />{" "}
-                        <img src={del} onClick={() => handleDelete(item._id)} />
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                products
+                  .slice() // Cria uma cópia do array para evitar modificar o original
+                  .sort((a, b) => a.name.localeCompare(b.name)) // Ordena pelo nome de A - Z
+                  .map((item) => (
+                    <tr key={item._id}>
+                      <td>{item.name}</td>
+                      <td>{item.description}</td>
+                      <td>{item.price}</td>
+                      <td>{item.amount}</td>
+                      <td>{formatDate(item.updated)}</td>
+                      <td>
+                        <div className="actions">
+                          <EditModal id={item._id} />{" "}
+                          <img
+                            src={del}
+                            onClick={() => handleDelete(item._id)}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
               )}
             </tbody>
           </table>

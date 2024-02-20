@@ -32,6 +32,7 @@ const style = {
 
 export default function Create() {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ export default function Create() {
     const url = `${import.meta.env.VITE_CREATE_PRODUCT}`;
 
     try {
+      setLoading(true);
       const response = await axios.post(url, data, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -57,6 +59,8 @@ export default function Create() {
       });
       dispatch(addProduct(response.data.product));
       toast.success(response.data.message);
+      setLoading(false);
+      reset();
       return response.data;
     } catch (error) {
       if (
@@ -67,6 +71,8 @@ export default function Create() {
         toast.error(error.response.data.message);
       } else {
         toast.error("Ocorreu um erro desconhecido." + error);
+        setLoading(false);
+        reset();
       }
     }
 
@@ -112,7 +118,11 @@ export default function Create() {
               placeholder="Quantidade"
             />
 
-            <button type="submit">CADASTRAR</button>
+            {loading ? (
+              <button disabled>CRIANDO...</button>
+            ) : (
+              <button type="submit">CADASTRAR</button>
+            )}
 
             <div className="error-box">
               {errors.name && <Error error="name is required!" />}

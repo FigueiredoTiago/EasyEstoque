@@ -35,6 +35,7 @@ const style = {
 
 export default function EditModal({ id }) {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export default function EditModal({ id }) {
   const { data } = useSelector((state) => state.auth);
   const token = data?.token;
 
-  const { item, loading } = useGetOneProduct(id, token);
+  const { item } = useGetOneProduct(id, token);
   //funcao que puxa o item pelo id
 
   const onSubmit = async (data) => {
@@ -63,6 +64,7 @@ export default function EditModal({ id }) {
     const url = `${import.meta.env.VITE_GET_PRODUCTS}`;
 
     try {
+      setLoading(true);
       const response = await axios.patch(`${url}/${id}`, dados, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,6 +72,8 @@ export default function EditModal({ id }) {
       });
       toast.success(response.data.message);
       dispatch(editProduct({ id, updatedProduct: response.data.product }));
+      setLoading(false);
+      reset();
       handleClose();
       return response.data;
     } catch (error) {
@@ -79,8 +83,10 @@ export default function EditModal({ id }) {
         error.response.data.message
       ) {
         toast.error(error.response.data.message);
+        setLoading(false);
       } else {
         toast.error("Ocorreu um erro desconhecido.");
+        setLoading(false);
       }
     }
     reset();
@@ -141,7 +147,7 @@ export default function EditModal({ id }) {
               />
             )}
 
-            <button type="submit">Editar</button>
+            { loading ? (<button disabled >Editando...</button> ) : ( <button type="submit">Editar</button> )}
 
             <div className="error-box">
               {errors.name && <Error error="name is required!" />}

@@ -55,7 +55,7 @@ const Register = () => {
           />
 
           <select {...register("auth")}>
-            <option value="administrador">administrador</option>
+            <option value="admin">administrador</option>
             <option value=" usuario"> usuario</option>
           </select>
 

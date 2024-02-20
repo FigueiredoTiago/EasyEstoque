@@ -62,7 +62,11 @@ const Login = () => {
             {...register("password", { required: true })}
             placeholder="Password"
           />
-          <button type="submit">ENTRAR</button>
+          {loading ? (
+            <button disabled>AGUARDE...</button>
+          ) : (
+            <button type="submit">ENTRAR</button>
+          )}
 
           <Link to="/register" className="register-link">
             +Novo Usuario

@@ -74,7 +74,7 @@
 
           &::placeholder {
             color: #000;
-            font-weight: bold;
+            font-weight: lighter;
           }
         }
 
@@ -94,7 +94,7 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
 
   &::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 1rem;
     height: 0.5rem;
   }
 
@@ -104,6 +104,11 @@
 
   &::-webkit-scrollbar-thumb {
     background: #0442bf;
+    cursor: pointer;
+
+    &:hover {
+      background: #022859;
+    }
   }
 }
 
@@ -126,10 +131,12 @@ th,
 td {
   padding: 1rem;
   text-align: center;
+ 
 }
 
 td {
   border-bottom: 2px ridge #f2e7dc;
+  height: 5rem;
 }
 
 td div.actions {
