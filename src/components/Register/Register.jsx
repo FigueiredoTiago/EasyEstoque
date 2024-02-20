@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-// import "./styles.scss";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import box from "../../assets/icons/box.png";
 import Error from "../../utils/Error";

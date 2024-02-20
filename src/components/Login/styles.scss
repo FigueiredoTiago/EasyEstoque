@@ -37,11 +37,11 @@
       background-color: #f2e9e950;
       backdrop-filter: blur(1rem);
       border-radius: 0 0 0.5rem 0.5rem;
-      min-height: 50%;
+      height: auto;
       max-width: 40rem;
       width: 100%;
-      padding: 1rem;
-
+      padding: 5rem 1rem;
+ 
       display: flex;
       flex-direction: column;
       justify-content: center;
