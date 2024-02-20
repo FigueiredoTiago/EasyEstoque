@@ -120,7 +120,10 @@ export const deleteProduct = async (productId, token) => {
 
 export const fetchData = async (email, password) => {
   try {
-    const response = await axios.post(import.meta.env.VITE_LOGIN_USER, { email, password });
+    const response = await axios.post(import.meta.env.VITE_LOGIN_USER, {
+      email,
+      password,
+    });
     toast.success(response.data.message);
     return response.data; // Retorna os dados da resposta
   } catch (error) {
@@ -128,20 +131,18 @@ export const fetchData = async (email, password) => {
       toast.error(error.response.data.message);
       throw error.response.data.message;
     } else {
-      toast.error('Ocorreu um erro desconhecido.');
-      throw 'Ocorreu um erro desconhecido.';
+      toast.error("Ocorreu um erro desconhecido.");
+      throw "Ocorreu um erro desconhecido.";
     }
   }
 };
 
-
-//funcao para registrar um usuario 
+//funcao para registrar um usuario
 
 export const FetchRegister = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
 
   const url = import.meta.env.VITE_CREATE_USER;
 
@@ -152,7 +153,6 @@ export const FetchRegister = () => {
       const response = await axios.post(url, { name, email, password, auth });
       setData(response.data);
       toast.success(response.data.message);
-      setsucces(true);
       setLoading(false);
     } catch (error) {
       if (

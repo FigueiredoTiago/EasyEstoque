@@ -20,9 +20,7 @@ const Register = () => {
     reset,
   } = useForm();
 
-  const navigate = useNavigate();
-
-  const { loading, error, registerUser, data } = FetchRegister();
+  const { loading, registerUser } = FetchRegister();
 
   const onSubmit = async (data) => {
     await registerUser(data.name, data.email, data.password, data.auth);
@@ -59,7 +57,11 @@ const Register = () => {
             <option value=" usuario"> usuario</option>
           </select>
 
-          <button type="submit">CADASTRAR</button>
+          {loading ? (
+            <button disabled>CADASTRANDO...</button>
+          ) : (
+            <button type="submit">CADASTRAR</button>
+          )}
 
           <Link to="/" className="register-link">
             +Fazer Login
