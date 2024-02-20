@@ -10,6 +10,10 @@
   border-right: 4px solid #f2e7dc;
   z-index: 999;
 
+  @include device("s") {
+    border: 0;
+  }
+
   .menu-icon {
     cursor: pointer;
     width: 4.5rem;
@@ -62,7 +66,8 @@
         align-items: center;
         gap: 0.5rem;
 
-        a, p {
+        a,
+        p {
           color: #f2e7dc;
           font-weight: bold;
           text-decoration: none;
