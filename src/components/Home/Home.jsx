@@ -34,9 +34,11 @@ const Home = () => {
       setLoading(true);
       const response = await axios.get(url);
       dispatch(setProducts(response.data));
+      setBackBtn(false);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching Products:", error);
+      setBackBtn(false);
     } finally {
       setLoading(false);
     }
@@ -97,6 +99,8 @@ const Home = () => {
     }
   };
 
+  const [backBtn, setBackBtn] = useState(false);
+
   // Renomeie a função para evitar conflito com a ação Redux
   const searchProductsByName = async (searchTerm) => {
     const url = `https://api-estoque-eh9u.onrender.com/product/search?name=${searchTerm}`;
@@ -108,7 +112,9 @@ const Home = () => {
         },
       });
       dispatch(searchByName(response.data));
+      setBackBtn(true);
     } catch (error) {
+      setBackBtn(false);
       throw new Error(`Erro na chamada da API: ${error.message}`);
     }
   };
@@ -124,6 +130,12 @@ const Home = () => {
 
           <div className="input-box">
             <Create />
+            {backBtn && (
+              <span className="back-btn" onClick={fetchProductsFromApi}>
+                <img src={searchBtn} alt="icone search" />
+                Todos
+              </span>
+            )}
             <div className="search">
               <input
                 type="text"
