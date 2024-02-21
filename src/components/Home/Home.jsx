@@ -95,7 +95,7 @@ const Home = () => {
     try {
       await searchProductsByName(searchTerm);
     } catch (error) {
-      toast.error("Não foi encontrado nenhum produto com o nome pesquisado.");
+      toast.error(`Não foi encontrado nenhum produto com o nome pesquisado.`);
     }
   };
 
@@ -114,7 +114,6 @@ const Home = () => {
       dispatch(searchByName(response.data));
       setBackBtn(true);
     } catch (error) {
-      setBackBtn(false);
       throw new Error(`Erro na chamada da API: ${error.message}`);
     }
   };
