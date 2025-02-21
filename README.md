@@ -1,6 +1,6 @@
 # EasyEstoque - Frontend 📦
 
-![EasyEstoque](https://imgur.com/4EVVw28);
+![EasyEstoque]([https://imgur.com/4EVVw28](https://i.imgur.com/T72fIE7.png));
 
 **EasyEstoque** é uma aplicação web frontend projetada para ajudar empresas a gerenciar estoques de **qualquer tipo de produto** de forma eficiente e intuitiva. Com um layout simples e funcionalidades práticas, é ideal para quem precisa **controlar e monitorar os níveis de estoque**.
 
